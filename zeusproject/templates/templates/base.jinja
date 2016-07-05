@@ -1,0 +1,55 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/google.html" as google %}
+
+{% block html_attribs %} lang="pt-BR"{% endblock %}
+
+{# CSS #}
+{% block styles %}
+    {{super()}}
+    {% assets filters="cssmin", output="gen/packed.css", "css/site.css" %}
+          <link rel="stylesheet" href="{{ ASSET_URL }}"/>
+    {% endassets %}
+{% endblock %}
+
+{# NavBar #}
+{% block navbar %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{url_for('public.home')}}">{{config['SITE_NAME']}}</a>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      {% include "security/_menu.html" %}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{url_for('public.home')}}">{{config['SITE_NAME']}}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{# Content #}
+<div class="container">
+{% block content %}{%endblock%}
+</div>
+
+{# JS Script #}
+{% block scripts %}
+    {{super()}}
+    {%- if current_user.is_authenticated -%}
+        {{google.uanalytics(config['GOOGLE_ANALYTICS_ID', {'userId': current_user.id}])}}
+    {% else %}
+        {{google.uanalytics(config['GOOGLE_ANALYTICS_ID'])}}
+    {%endif%}
+    {% assets filters="jsmin", output="gen/app.js", "js/app.js" %}
+          <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endblock %}

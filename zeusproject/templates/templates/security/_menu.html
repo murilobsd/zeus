@@ -1,0 +1,20 @@
+<ul class="nav navbar-nav navbar-right">
+  {%- if current_user.is_authenticated -%}
+  <li><a href="{{ url_for('users.profile') }}">Oi {{ current_user.email }} (Perfíl)</a></li>
+  {%- endif %}
+
+  {% if current_user.has_role('admin') -%}
+  <li><a href="{{ url_for('admin.admin_page') }}">Administração</a></li>
+  {% endif -%}
+
+    {%- if current_user.is_authenticated -%}
+      <li><a href="{{ url_for('security.logout') }}">Sair</a></li>
+    {%- else -%}
+      {% if security.registerable %}
+          <li><a href="{{ url_for('security.register') }}">Registrar</a></li>
+      {% endif %}
+      <li>
+          <a href="{{ url_for('security.login') }}">Login</a>
+      </li>
+    {%- endif -%}
+</ul>

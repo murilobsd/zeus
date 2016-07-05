@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+"""Zeus Project."""
+
+import sys
+
+
+from zeusproject import commands
+
+
+def main():
+    """docstring for main."""
+    args = commands.get_arguments()
+
+    if args.debug:
+        commands.logger.setLevel(commands.logging.DEBUG)
+    commands.logger.debug("Starting on %s" % args.name)
+
+    if args.createproject:
+        project = commands.Project(args.name, args.author, args.domain)
+        try:
+            project.generate()
+        except Exception as e:
+            print(e)
+            sys.exit(1)
+    elif args.createmodule.strip() != "":
+        module = commands.Module(args.name, args.author, args.domain)
+        try:
+            module.ger_custom(args.createmodule.strip())
+        except Exception as e:
+            print(e)
+            sys.exit(1)
+    elif args.createtemplate.strip() != "":
+        template = commands.Template(args.name, args.author, args.domain)
+        try:
+            template.ger_custom(args.createtemplate.strip())
+        except Exception as e:
+            print(e)
+            sys.exit(1)
+    else:
+        pass
+
+if __name__ == '__main__':
+    main()

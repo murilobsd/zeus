@@ -1,0 +1,9 @@
+flask
+flask-mongoengine
+flask-assets
+flask-script
+flask-cache
+flask-bootstrap
+flask-security
+cssmin
+jsmin

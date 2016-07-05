@@ -1,0 +1,11 @@
+{% extends "base.jinja" %}
+
+{% block title %}
+Perfíl
+{% endblock %}
+
+
+{% block content %}
+Email: {{ current_user.email }}
+<br/>Último Acesso: {{ current_user.last_login_at.strftime("%d/%m/%Y") }}
+{% endblock %}

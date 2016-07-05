@@ -1,0 +1,18 @@
+{% extends "base.jinja" %}
+{% from "bootstrap/pagination.html" import render_pagination %}
+
+{% block title %}
+    {{ TITLE }} - Listar
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if _all %}
+            {% for instance in _all %}
+                <p>Nome: {{ instance.nome }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

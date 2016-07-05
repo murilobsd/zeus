@@ -1,0 +1,8 @@
+*.pyc
+.DS_Store
+.idea
+static/.webassets-cache
+static/gen/
+__pycache__
+testes/
+help.txt
