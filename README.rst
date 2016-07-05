@@ -9,9 +9,9 @@ Zeus-lab804
 Sobre
 =====
 Zeus facilita a criação de projetos para `Flask` além de implementar outras
-bibliotecas como `flask-cache <https://github.com/thadeusb/flask-cache>`,
-`flask-script <https://github.com/smurfix/flask-script>`,
-`flask-mongonegine <https://github.com/MongoEngine/flask-mongoengine>`... possui
+bibliotecas como `flask-cache <https://github.com/thadeusb/flask-cache>`_,
+`flask-script <https://github.com/smurfix/flask-script>`_,
+`flask-mongonegine <https://github.com/MongoEngine/flask-mongoengine>`_... possui
 funcionalidades para criação de módulos e templates.
 
 Instalação
@@ -58,5 +58,5 @@ Preciso ter vergonha na cara é gerar testes.
 Contribuir
 ============
 Contribua de qualquer forma, veja se sua sugestão já não foi respondida nas
-`issues <https://github.com/murilobsd/zeus/issues>`, crie um logo para o
+`issues <https://github.com/murilobsd/zeus/issues>`_, crie um logo para o
 projeto, de sugestões para exemplos, crie templates, ajude criar a wiki...
