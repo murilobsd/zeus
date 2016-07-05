@@ -318,8 +318,6 @@ class Template(StructProject):
             with open(templatefile, "w") as f:
                 f.write(content)
 
-            # self.write(templatefile, f, context, templatefld=self._modulefld)
-
         logger.info("[ \u2714 ] Completed created template %s." % custom_name)
 
 

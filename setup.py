@@ -10,13 +10,14 @@ from setuptools import setup
 
 setup(
     name="zeus-lab804",
-    version="0.1",
+    version="0.1.0",
     url="https://github.com/murilobsd/zeus",
     license="BSD",
     description="Fast create scaffold of flask.",
     author="Lab804",
     author_email="contato@lab804.com.br",
     long_description=__doc__,
+    include_package_data=True,
     zip_safe=False,
     platforms="any",
     install_requires=[

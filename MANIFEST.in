@@ -1,0 +1,3 @@
+recursive-include zeusproject/_template *
+recursive-include zeusproject/_module *
+recursive-include zeusproject/templates *
