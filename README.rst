@@ -37,6 +37,7 @@ Exemplos
 Alguns exemplos:
 
 .. code-block:: shell
+
     # Criando Projeto
     $ zeus --createproject=true meuprojeto
     $ cd meuprojeto/
@@ -45,6 +46,7 @@ Alguns exemplos:
     # Abra seu navegador http://127.0.0.1:5000/
 
 .. code-block:: shell
+
     # Gerando Modulo
     $ zeus --createmodule=estacao caminho_da_pasta_projeto
     # Gerando Template para Modulo
