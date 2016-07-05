@@ -6,3 +6,6 @@ static/gen/
 __pycache__
 testes/
 help.txt
+build/
+dist/
+zeus_lab804.egg-info/
