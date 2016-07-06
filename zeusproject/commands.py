@@ -357,7 +357,7 @@ class Project(StructProject):
         }
 
     def _extensions(self):
-        """Extensions files."""
+        """Plugin flask."""
         templatefile = os.path.join(self.projectfolder, self.name_project,
                                     "extensions.py")
 
