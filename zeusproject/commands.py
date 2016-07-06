@@ -430,6 +430,8 @@ class Project(StructProject):
         self._app()
         # Manage
         self._manage()
+        # License
+        self._license()
         # Std. Modules
         self.module.ger_std_modules()
         end = time.time() - start
