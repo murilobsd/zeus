@@ -11,12 +11,11 @@
 
 from flask.ext.mongoengine.wtf import model_form
 from flask.ext.wtf import Form
-from wtforms import SubmitField
+from wtforms import SubmitField, StringField
 
 {# Get Model #}
 from {{NAMEPROJECT}}.{{MODNAME}}.models import {{MODNAME | capitalize}}
 
-class SubForm(Form):
+class {{MODNAME }}Form(Form):
+    nome = StringField("Nome")
     submit = SubmitField("Adicionar")
-
-{{MODNAME }}Form = model_form({{MODNAME | capitalize}}, base_class=SubForm, exclude=[])
