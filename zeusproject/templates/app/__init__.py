@@ -101,6 +101,11 @@ def register_extensions(app):
         app.logger.info("Create static folder of minify files.")
         os.mkdir(assets_out)
 
+    # Fist time, create basic roles.
+    if Role.objects.count() == 0:
+        Role.objects.create(name="admin", description="admin roles")
+        Role.objects.create(name="user", description="user roles")
+
     # Cache
     extensions.cache.init_app(app)
 
