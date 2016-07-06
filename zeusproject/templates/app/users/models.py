@@ -41,8 +41,7 @@ class Address(db.EmbeddedDocument):
 class User(db.Document, UserMixin):
     """User."""
     email = db.StringField(max_length=255)
-    nome = db.StringField()
-    sobrenome = db.StringField()
+    fullname = db.StringField()
     username = db.StringField(max_length=255)
     password = db.StringField(max_length=255)
     active = db.BooleanField(default=False)
@@ -55,18 +54,6 @@ class User(db.Document, UserMixin):
     login_count = db.IntField()
     avatar = db.StringField()
     endereco = db.EmbeddedDocumentField(Address)
-
-    @property
-    def cn(self):
-        if self.username:
-            return u"@{}".format(self.username)
-        elif not self.nome or not self.sobrenome:
-            if len(self.email.split('@')) > 0:
-                return self.email.split('@')[0]
-            else:
-                return self.email[:15]
-        else:
-            return u"{} {}".format(self.nome, self.sobrenome)
 
     @property
     def id(self):

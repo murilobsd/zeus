@@ -12,7 +12,7 @@ Registrar
         {{ register_user_form.hidden_tag() }}
 
         {{ wtf.form_errors(register_user_form) }}
-
+        {{ wtf.form_field(register_user_form.fullname) }}
         {{ wtf.form_field(register_user_form.email) }}
         {{ wtf.form_field(register_user_form.password) }}
         {% if register_user_form.password_confirm %}

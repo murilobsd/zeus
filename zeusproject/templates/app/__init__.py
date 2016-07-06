@@ -17,6 +17,7 @@ from flask_security import Security, MongoEngineUserDatastore
 
 from {{NAMEPROJECT}} import extensions
 from {{NAMEPROJECT}}.users.models import User, Role
+from {{NAMEPROJECT}}.users.forms import CustomLoginForm, ExtendedRegisterForm
 from {{NAMEPROJECT}} import {% if MODULES -%} {% for module in MODULES -%}{% if loop.last -%}{{module}}{%else-%}{{module}}, {%endif-%} {% endfor %}{% endif %}
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -92,7 +93,9 @@ def register_extensions(app):
     extensions.mail.init_app(app)
     # Securirty
     app.user_datastore = MongoEngineUserDatastore(app.db, User, Role)
-    app.security = Security(app, app.user_datastore)
+    app.security = Security(app, app.user_datastore,
+                            register_form=ExtendedRegisterForm,
+                            login_form=CustomLoginForm)
     # Assets
     extensions.assets.init_app(app)
     assets_out = os.path.join(APP_DIR, "..", "static", "gen")

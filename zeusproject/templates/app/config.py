@@ -34,7 +34,7 @@ class Config:
 
         self.SYS_ADMINS = ['errors@{{DOMAIN}}']  # E-mails to send errors
         self.BOOTSTRAP_SERVE_LOCAL = True
-        self.GOOGLE_ANALYTICS_ID = ""  # Analytics U-XXXX-YY
+        self.GOOGLE_ANALYTICS_ID = None  # Analytics U-XXXX-YY
         self.CACHE_TYPE = "simple"
         self.PER_PAGE = 10  # Pagination per page
 
@@ -58,6 +58,7 @@ class Config:
         self.SECURITY_RECOVERABLE = True
         self.SECURITY_TRACKABLE = True
         self.SECURITY_CHANGEABLE = True
+        self.SECURITY_SEND_REGISTER_EMAIL = False
 
         # flask security routes
         self.SECURITY_URL_PREFIX = '/auth'

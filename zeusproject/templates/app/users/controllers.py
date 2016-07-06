@@ -14,8 +14,8 @@ from flask_security import login_required
 blueprint = Blueprint('users', __name__, url_prefix='/users')
 
 
-@login_required
 @blueprint.route('/profile')
+@login_required
 def profile():
     """return user profle."""
     current_app.logger.debug(u'Get profile user.')
