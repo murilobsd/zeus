@@ -39,7 +39,6 @@ setup(
         "Operating System :: OS Independent",
         "Natural Language :: English",
         "Operating System :: OS Independent",
-        "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     ]
