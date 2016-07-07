@@ -4,12 +4,14 @@
     :height: 150
     :align: center
 
-
 :Info: Scaffold flask.
 :Repository: https://github.com/murilobsd/zeus
 :Author: Murilo Ijanc (http://github.com/murilobsd)
 :Site: `https://zeus.lab804.com.br <https://zeus.lab804.com.br>`_
 
+.. image:: https://landscape.io/github/murilobsd/zeus/master/landscape.png
+   :target: https://landscape.io/github/murilobsd/zeus/master
+   :alt: Code Health
 
 Sobre
 =====
