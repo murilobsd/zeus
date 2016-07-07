@@ -41,7 +41,7 @@ Alguns exemplos:
 .. code-block:: shell
 
     # Criando Projeto
-    $ zeus --createproject=true meuprojeto
+    $ zeus --project meuprojeto
     $ cd meuprojeto/
     $ pip install -r requirements-dev.txt
     $ python manage.py runserver
@@ -50,9 +50,9 @@ Alguns exemplos:
 .. code-block:: shell
 
     # Gerando Modulo
-    $ zeus --createmodule=estacao caminho_da_pasta_projeto
+    $ zeus --module pagamento meuprojeto # Caminho do meuprojeto
     # Gerando Template para Modulo
-    $ zeus --createtemplate=estacao caminho_da_pasta_projeto
+    $ zeus --template pagamento meuprojeto # Caminho do meuprojeto
 
 
 Tests
