@@ -54,6 +54,41 @@ Alguns exemplos:
     # Gerando Template para Modulo
     $ zeus --template pagamento meuprojeto # Caminho do meuprojeto
 
+Opções
+======
+Outras argumentos que podem ser utilizado na **criação do projeto**.
+
+.. code-block:: shell
+
+    $ zeus --help
+     ________   _______  __    __       _______. __
+    |       /  |   ____||  |  |  |     /       ||  |
+    `---/  /   |  |__   |  |  |  |    |   (----`|  |
+      /  /    |   __|  |  |  |  |     \   \     |  |
+     /  /----.|  |____ |  `--'  | .----)   |    |__|
+    /________||_______| \______/  |_______/     (__)
+
+
+    usage: zeus [-h] [--project PROJECT] [--module MODULE MODULE]
+               [--template TEMPLATE TEMPLATE] [--author AUTHOR] [--domain DOMAIN]
+               [--debug DEBUG] [--version]
+
+    optional arguments:
+     -h, --help            show this help message and exit
+     --project PROJECT, -p PROJECT
+                           Creating project.
+     --module MODULE MODULE, -m MODULE MODULE
+                           Creating module.
+     --template TEMPLATE TEMPLATE, -t TEMPLATE TEMPLATE
+                           Creating template.
+     --author AUTHOR, -a AUTHOR
+                           Author of project (default: Lab804).
+     --domain DOMAIN, -do DOMAIN
+                           Domain, (default: lab804.com.br)
+     --debug DEBUG, -d DEBUG
+                           Debug mode.
+     --version, -v         show program's version number and exit
+
 
 Tests
 =====
