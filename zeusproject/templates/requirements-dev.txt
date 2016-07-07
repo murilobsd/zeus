@@ -7,3 +7,4 @@ flask-bootstrap
 flask-security
 cssmin
 jsmin
+fabric

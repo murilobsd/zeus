@@ -5,12 +5,11 @@ Zeus
 Fast create scaffold of flask.
 """
 
-from setuptools import setup
-
+from setuptools import setup, find_packages
 
 setup(
     name="zeus-lab804",
-    version="0.1.0",
+    version="0.1.1",
     url="https://github.com/murilobsd/zeus",
     license="BSD",
     description="Fast create scaffold of flask.",
@@ -18,6 +17,7 @@ setup(
     author_email="contato@lab804.com.br",
     long_description=__doc__,
     include_package_data=True,
+    packages=find_packages(),
     zip_safe=False,
     platforms="any",
     install_requires=[
@@ -27,9 +27,7 @@ setup(
         "MarkupSafe==0.23",
         "pyfiglet==0.7.5",
         "termcolor==1.1.0",
-
     ],
-    packages=["zeusproject"],
     scripts=["zeus"],
     classifiers=[
         "Environment :: Console",
