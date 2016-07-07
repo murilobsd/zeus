@@ -99,7 +99,7 @@ class StructProject:
                                             self.name_project))
             logger.info("[ \u2714 ] Completed copy data to project folder.")
         except Exception as e:
-            logger.error("[ \u2717 ] %s" % e)
+            logger.error("[ \u2717 ] " + e)
 
     def random(self, size=32):
         """random values."""
@@ -126,8 +126,8 @@ class StructProject:
         template = template_env.get_template(templatef)
         content = template.render(context)
 
-        with open(dst, 'w+') as f:
-            f.write(content)
+        with open(dst, 'w+') as destiny:
+            destiny.write(content)
         return True
 
 
@@ -151,8 +151,7 @@ class Module(StructProject):
 
         # Project exist.
         if not os.path.exists(self.projectfolder):
-            logger.error("[ \u2717 ] Not exist name of project: %s" %
-                         self.projectfolder)
+            logger.error("[ \u2717 ] Not exist name of project.")
             raise Exception("Not exist name of project.")
 
         self.modulesfolder = os.path.join(
@@ -194,15 +193,13 @@ class Module(StructProject):
         custom_name = self._clean_name(name)
         mod_path = os.path.join(self.modulesfolder, name)
         if os.path.exists(mod_path):
-            logger.error("[ \u2717 ] Exists same name of module: %s" %
-                         self.modulesfolder)
+            logger.error("[ \u2717 ] Exists same name of module.")
             raise DuplicateModuleException("Duplicated module name.")
 
         try:
             os.makedirs(mod_path)
         except:
-            logger.error("[ \u2717 ] Error creating module folder: %s" %
-                         self.modulesfolder)
+            logger.error("[ \u2717 ] Error creating module folder.")
             raise CreateFolderException("Error creating module folder.")
 
         context = {
@@ -221,14 +218,15 @@ class Module(StructProject):
         # update __init__.py
         self.update_app(custom_name)
 
-        logger.info("[ \u2714 ] Completed created module %s." % custom_name)
+        logger.info("[ \u2714 ] Completed created module.")
 
     def update_app(self, custom_name):
         """Update for put blueprints and modules in __init__.py."""
         template = None
         limit = 0
-        with open(os.path.join(self.modulesfolder, "__init__.py")) as f:
-            template = f.readlines()
+
+        with open(os.path.join(self.modulesfolder, "__init__.py")) as destiny:
+            template = destiny.readlines()
 
         if not template:
             raise Exception("Not exist file __int__.py file")
@@ -253,8 +251,9 @@ class Module(StructProject):
             template.insert(limit + 1, tpl_bp.format(custom_name))
 
         # save update datas
-        with open(os.path.join(self.modulesfolder, "__init__.py"), "w") as f:
-            f.write("".join(template))
+        filename = os.path.join(self.modulesfolder, "__init__.py")
+        with open(filename, "w") as destiny:
+            destiny.write("".join(template))
 
 
 class Template(StructProject):
@@ -276,8 +275,7 @@ class Template(StructProject):
 
         # Project exist.
         if not os.path.exists(self.projectfolder):
-            logger.error("[ \u2717 ] Not exist name of project: %s" %
-                         self.projectfolder)
+            logger.error("[ \u2717 ] Not exist name of project.")
             raise Exception("Not exist name of project.")
 
         self.templatesfolder = os.path.join(
@@ -288,15 +286,13 @@ class Template(StructProject):
         custom_name = self._clean_name(name)
         tpl_path = os.path.join(self.templatesfolder, name)
         if os.path.exists(tpl_path):
-            logger.error("[ \u2717 ] Exists same name of template: %s" %
-                         self.templatesfolder)
+            logger.error("[ \u2717 ] Exists same name of template.")
             raise DuplicateModuleException("Duplicated template name.")
 
         try:
             os.makedirs(tpl_path)
         except:
-            logger.error("[ \u2717 ] Error creating template folder: %s" %
-                         self.modulesfolder)
+            logger.error("[ \u2717 ] Error creating template folder.")
             raise CreateFolderException("Error creating template folder.")
 
         context = {
@@ -305,20 +301,21 @@ class Template(StructProject):
         }
 
         # TODO: CHANGE THIS PLEASE
-        for f in self._files:
-            templatefile = os.path.join(tpl_path, f)
+        for fname in self._files:
+            templatefile = os.path.join(tpl_path, fname)
             # read
-            with open(os.path.join(self.scriptdir, self._modulefld, f)) as f:
-                content = f.read()
+            filename = os.path.join(self.scriptdir, self._modulefld, fname)
+            with open(filename) as destiny:
+                content = destiny.read()
 
             content = content.replace("{{ TITLE }}", context["TITLE"])
             content = content.replace("{{MODNAME}}", context["MODNAME"])
 
             # write
-            with open(templatefile, "w") as f:
-                f.write(content)
+            with open(templatefile, "w") as destiny:
+                destiny.write(content)
 
-        logger.info("[ \u2714 ] Completed created template %s." % custom_name)
+        logger.info("[ \u2714 ] Completed created template.")
 
 
 class Project(StructProject):
@@ -336,8 +333,7 @@ class Project(StructProject):
 
         # Project exist.
         if os.path.exists(self.projectfolder):
-            logger.error("[ \u2717 ] Exists same name of project: %s" %
-                         self.projectfolder)
+            logger.error("[ \u2717 ] Exists same name of project.")
             raise DuplicateException("Duplicated project name.")
 
         # Copy all data
@@ -409,14 +405,6 @@ class Project(StructProject):
         self.write(templatefile, "README.md", self.context)
 
         logger.info("[ \u2714 ] Creating README.")
-
-    def ger_template(self, name=None):
-        """Generate templates."""
-        self.template.construct()
-
-    def ger_modules(self, name=None):
-        """Generate modules."""
-        self.modules.construct()
 
     def generate(self):
         """Generate Project."""
