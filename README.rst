@@ -4,6 +4,7 @@ Zeus-lab804
 :Info: Scaffold flask.
 :Repository: https://github.com/murilobsd/zeus
 :Author: Murilo Ijanc (http://github.com/murilobsd)
+:Site: `https://zeus.lab804.com.br <https://zeus.lab804.com.br>`_
 
 
 Sobre
