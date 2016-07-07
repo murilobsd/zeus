@@ -4,7 +4,7 @@
 {# CSS #}
 {% block styles %}
     <script src="https://use.fontawesome.com/a2bd160095.js"></script>
-    {% assets filters="cssmin", output="gen/packed.css", "css/bootstrap.css", "css/site.css",  %}
+    {% assets filters="cssmin", output="gen/packed.css", "css/bootstrap.css", "css/site.css"  %}
           <link rel="stylesheet" href="{{ ASSET_URL }}"/>
     {% endassets %}
 {% endblock %}
