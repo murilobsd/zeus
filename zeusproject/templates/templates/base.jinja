@@ -1,13 +1,10 @@
-{% extends "bootstrap/base.html" %}
 {% import "bootstrap/google.html" as google %}
 
-{% block html_attribs %} lang="pt-BR"{% endblock %}
 
 {# CSS #}
 {% block styles %}
-    {{super()}}
     <script src="https://use.fontawesome.com/a2bd160095.js"></script>
-    {% assets filters="cssmin", output="gen/packed.css", "css/site.css" %}
+    {% assets filters="cssmin", output="gen/packed.css", "css/bootstrap.css", "css/site.css",  %}
           <link rel="stylesheet" href="{{ ASSET_URL }}"/>
     {% endassets %}
 {% endblock %}
@@ -15,7 +12,7 @@
 {# NavBar #}
 {% block navbar %}
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse"
       data-target="#bs-example-navbar-collapse-1">
@@ -45,7 +42,6 @@
 
 {# JS Script #}
 {% block scripts %}
-    {{super()}}
     {%- if current_user.is_authenticated -%}
         {% if config['GOOGLE_ANALYTICS_ID'] %}
             {{google.uanalytics(config['GOOGLE_ANALYTICS_ID', {'userId': current_user.pk}])}}
@@ -53,7 +49,7 @@
             {{google.uanalytics(config['GOOGLE_ANALYTICS_ID'])}}
         {% endif %}
     {%endif%}
-    {% assets filters="jsmin", output="gen/app.js", "js/app.js" %}
+    {% assets filters="jsmin", output="gen/app.js", "js/bootstrap.js", "js/app.js" %}
           <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
 {% endblock %}
