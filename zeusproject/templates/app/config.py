@@ -23,6 +23,7 @@ class Config:
         self.TESTING = False
         self.PRODUCTION = False
         self.SITE_NAME = "{{NAME}}"
+        self.SITE_LOGO = "/static/img/logo_zeus.svg"
         self.SECRET_KEY = '{{SECRETKEY}}'
         self.LOG_LEVEL = logging.DEBUG
         self.WTF_CSRF_ENABLED = True
