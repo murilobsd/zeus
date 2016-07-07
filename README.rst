@@ -25,6 +25,7 @@ setup.py install``.
 
 Dependências
 ============
+- mongo
 - colorama==0.3.7
 - colorlog==2.7.0
 - Jinja2==2.8
