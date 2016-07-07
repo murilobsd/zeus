@@ -1,0 +1,14 @@
+Zeus-lab804 Changelog
+=====================
+
+Mudanças em cada nova release zeus-lab804.
+
+Version 0.1.1
+-------------
+
+06 de julho 2016
+
+- Adicionado novos campos para o formulário de registro e login
+- Corrigido bug na serialização do ID do usuário para google analytics na template
+- Adicionado Grupos de acesso "user" e "admin" automaticamente
+- PEP8
