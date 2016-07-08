@@ -17,6 +17,10 @@
    :target: https://landscape.io/github/murilobsd/zeus/master
    :alt: Code Health
 
+.. image:: https://travis-ci.org/murilobsd/zeus.svg?branch=master
+   :target: https://travis-ci.org/murilobsd/zeus
+   :alt: Travis
+
 Sobre
 =====
 Zeus facilita a criação de projetos para `Flask` além de implementar outras
