@@ -1,0 +1,13 @@
+sudo: false
+language: python
+python:
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - pypy3
+install:
+  - pip install tox
+script:
+  - tox -e py
+notifications:
+  email: true
