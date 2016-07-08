@@ -3,6 +3,18 @@ Zeus-lab804 Changelog
 
 Mudanças em cada nova release zeus-lab804.
 
+Version 0.1.2
+-------------
+
+08 de julho 2016
+
+- Ajustado bugs nas templates
+- Adicionado testes aos modulos
+- Refatorado a maneira de criar projetos
+- Adicionado arquivos de configuração nginx/supervisor
+- Criado a configuração para deploy Ubuntu/Debian
+
+
 Version 0.1.1
 -------------
 
