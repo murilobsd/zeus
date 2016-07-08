@@ -400,11 +400,34 @@ class Project(StructProject):
 
     def _readme(self):
         """Generate Readme."""
-        templatefile = os.path.join(self.projectfolder, "README.md")
+        templatefile = os.path.join(self.projectfolder, "README.rst")
 
-        self.write(templatefile, "README.md", self.context)
+        self.write(templatefile, "README.rst", self.context)
 
         logger.info("[ \u2714 ] Creating README.")
+
+    def _fabfile(self):
+        """Generate Fabfile."""
+        templatefile = os.path.join(self.projectfolder, "fabfile.py")
+
+        self.write(templatefile, "fabfile.py", self.context)
+
+    def _uwsgi(self):
+        """Generate Uwsgi."""
+        templatefile = os.path.join(self.projectfolder, "uwsgi.ini")
+
+        self.write(templatefile, "uwsgi.ini", self.context)
+
+    def _config_files(self):
+        """Nginx Supervisor conf files."""
+        files = ["project_nginx.conf", "project_supervisor.conf"]
+        folder = os.path.join(self.projectfolder, "config")
+
+        for conffile in files:
+            templatefile = os.path.join(folder, conffile)
+
+            self.write(templatefile, os.path.join("config", conffile),
+                       self.context)
 
     def generate(self):
         """Generate Project."""
@@ -420,6 +443,14 @@ class Project(StructProject):
         self._manage()
         # License
         self._license()
+        # Readme
+        self._readme()
+        # Fabfile
+        self._fabfile()
+        # Uwsgi
+        self._uwsgi()
+        # Conf files Nginx Supervidor
+        self._config_files()
         # Std. Modules
         self.module.ger_std_modules()
         end = time.time() - start
