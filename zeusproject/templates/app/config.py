@@ -30,7 +30,7 @@ class Config:
 
         # Mongodb support
         self.MONGODB_SETTINGS = self.mongo_from_uri(
-            'mongodb://localhost:27017/{{NAMEPROJECT}}'
+            os.getenv('MONGOURI', 'mongodb://localhost:27017/{{NAMEPROJECT}}')
         )
 
         self.SYS_ADMINS = ['errors@{{DOMAIN}}']  # E-mails to send errors
