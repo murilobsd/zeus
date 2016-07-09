@@ -479,6 +479,6 @@ def get_arguments():
     parser.add_argument("--debug", "-d", help="Debug mode.",
                         type=bool, default=False),
     parser.add_argument("--version", "-v", action="version",
-                        version="%(prog)s 0.1.1")
+                        version="%(prog)s 0.1.2")
     args = parser.parse_args()
     return args

@@ -9,4 +9,4 @@
     :license: BSD, see LICENSE for mor details.
 """
 
-__version__ = "0.0.1"
+__version__ = "0.1.2"
