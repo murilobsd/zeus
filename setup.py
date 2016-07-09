@@ -5,7 +5,7 @@ Zeus
 Fast create scaffold of flask.
 """
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="zeus-lab804",
@@ -17,7 +17,7 @@ setup(
     author_email="contato@lab804.com.br",
     long_description=__doc__,
     include_package_data=True,
-    packages=find_packages(),
+    packages=["zeusproject"],
     zip_safe=False,
     platforms="any",
     install_requires=[
