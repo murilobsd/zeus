@@ -6,6 +6,6 @@ Perfíl
 
 
 {% block content %}
-Email: {{ current_user.email }}
-<br/>Último Acesso: {{ current_user.last_login_at.strftime("%d/%m/%Y") }}
+<p><b>Email: </b>{{ current_user.email }}</p>
+<p><b>Último Acesso: </b>{{ current_user.last_login_at.strftime("%d/%m/%Y") }}</p>
 {% endblock %}
