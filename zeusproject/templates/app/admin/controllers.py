@@ -20,3 +20,10 @@ def get_users():
     """return users in admin."""
     current_app.logger.debug(u'Get all users in admin.')
     return render_template('admin/users/list.html')
+
+@roles_required('admin')
+@blueprint.route('/')
+def admin_page():
+    """return users in admin."""
+    current_app.logger.debug(u'Get all users in admin.')
+    return render_template('admin/index.html')
