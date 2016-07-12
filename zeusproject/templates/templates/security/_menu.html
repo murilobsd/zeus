@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav navbar-right">
   {%- if current_user.is_authenticated -%}
-  <li><a href="{{ url_for('users.profile') }}">Oi {{ current_user.email }} (Perfíl)</a></li>
+  <li><a href="{{ url_for('users.profile') }}">Oi {{ current_user.fullname }} (Perfíl)</a></li>
   {%- endif %}
 
   {% if current_user.has_role('admin') -%}
