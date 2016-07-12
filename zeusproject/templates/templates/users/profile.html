@@ -4,9 +4,9 @@
 Perfíl
 {% endblock %}
 
-
 {% block content %}
 <div class="container">
+    <p><b>Nome: </b>{{current_user.fullname}}</p>
     <p><b>Email: </b>{{ current_user.email }}</p>
     <p><b>Último Acesso: </b>{{ current_user.last_login_at.strftime("%d/%m/%Y") }}</p>
 </div>
