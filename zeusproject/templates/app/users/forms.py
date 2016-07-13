@@ -11,7 +11,7 @@
 
 from wtforms import StringField, BooleanField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, \
-    ValidationError, EqualTo
+    ValidationError
 from flask_security.forms import ConfirmRegisterForm, LoginForm
 
 
@@ -24,7 +24,7 @@ class CustomLoginForm(LoginForm):
 
 class ExtendedRegisterForm(ConfirmRegisterForm):
     """Custom Register Form."""
-    fullname = StringField("Nome Completo")
+    fullname = StringField("Nome Completo", [DataRequired(message='Esse campo é obrigatório.')])
     email = StringField("Email")
     password = PasswordField("Senha")
     submit = SubmitField("Registrar")
