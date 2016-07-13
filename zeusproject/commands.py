@@ -68,13 +68,13 @@ class StructProject:
 
     def __init__(self, name_project, author, domain):
         """Init function."""
-        self.name = name_project
         self.name_project = self._clean_name(name_project)
+        self.name = os.path.basename(self.name_project)
         self.author = author
         self.domain = self._adjust_domain(domain)
 
         # path of project
-        self.projectfolder = os.path.join(self.cwd, self.name_project)
+        self.projectfolder = self.name_project
 
     def _clean_name(self, name):
         """Clean name of project."""
@@ -90,22 +90,25 @@ class StructProject:
     def copy_struct(self):
         """Copy folders to project folder path."""
         logger.debug("Copy struct of folders with new project.")
+
         try:
             shutil.copytree(os.path.join(self.scriptdir, self._templatesfld),
                             self.projectfolder)
             self.rename_folder(os.path.join(self.projectfolder,
                                             self._appfld),
                                os.path.join(self.projectfolder,
-                                            self.name_project))
+                                            self.name))
             logger.info("[ \u2714 ] Completed copy data to project folder.")
-        except Exception as e:
-            logger.error("[ \u2717 ] " + e)
+        except Exception:
+            logger.error("[ \u2717 ] Error coping project folder.")
 
-    def random(self, size=32):
+    @staticmethod
+    def random(size=32):
         """random values."""
         return codecs.encode(os.urandom(size), "hex").decode("utf-8")
 
-    def rename_folder(self, src, dst):
+    @staticmethod
+    def rename_folder(src, dst):
         """Rename folder."""
         try:
             os.rename(src, dst)
@@ -146,21 +149,18 @@ class Module(StructProject):
         """Init function."""
         StructProject.__init__(self, name_project, author, domain)
 
-        # path of project
-        self.projectfolder = os.path.join(self.cwd, self.name_project)
-
         # Project exist.
         if not os.path.exists(self.projectfolder):
             logger.error("[ \u2717 ] Not exist name of project.")
             raise Exception("Not exist name of project.")
 
         self.modulesfolder = os.path.join(
-            self.projectfolder, self.name_project)
+            self.projectfolder, self.name)
 
     def ger_std_modules(self):
         """Generating default modules."""
         context = {
-            "NAMEPROJECT": self.name_project,
+            "NAMEPROJECT": self.name,
             "YEAR": datetime.now().year,
             "AUTHOR": self.author,
             "NAME": self.name,
@@ -168,11 +168,11 @@ class Module(StructProject):
         }
 
         for m_folder in self.std_modules.keys():
-            files = self.std_modules[m_folder]
-            for f in files:
+            modfiles = self.std_modules[m_folder]
+            for mfile in modfiles:
                 templatefile = os.path.join(self.modulesfolder, m_folder,
-                                            f)
-                template = os.path.join(self._appfld, m_folder, f)
+                                            mfile)
+                template = os.path.join(self._appfld, m_folder, mfile)
                 # update context key modname
                 context.update({"MODNAME": m_folder})
                 self.write(templatefile, template, context)
@@ -203,17 +203,19 @@ class Module(StructProject):
             raise CreateFolderException("Error creating module folder.")
 
         context = {
-            "NAMEPROJECT": self.name_project,
+            "NAMEPROJECT": self.name,
             "YEAR": datetime.now().year,
             "AUTHOR": self.author,
             "NAME": self.name,
             "MODNAME": custom_name
         }
 
-        files = ["__init__.py", "controllers.py", "models.py", "forms.py"]
-        for f in files:
-            templatefile = os.path.join(mod_path, f)
-            self.write(templatefile, f, context, templatefld=self._modulefld)
+        templatesfile = ["__init__.py",
+                         "controllers.py", "models.py", "forms.py"]
+        for template in templatesfile:
+            templatefile = os.path.join(mod_path, template)
+            self.write(templatefile, template, context,
+                       templatefld=self._modulefld)
 
         # update __init__.py
         self.update_app(custom_name)
@@ -270,9 +272,6 @@ class Template(StructProject):
         """Init function."""
         StructProject.__init__(self, name_project, author, domain)
 
-        # path of project
-        self.projectfolder = os.path.join(self.cwd, self.name_project)
-
         # Project exist.
         if not os.path.exists(self.projectfolder):
             logger.error("[ \u2717 ] Not exist name of project.")
@@ -328,9 +327,6 @@ class Project(StructProject):
         """Init function."""
         StructProject.__init__(self, name_project, author, domain)
 
-        # path of project
-        self.projectfolder = os.path.join(self.cwd, self.name_project)
-
         # Project exist.
         if os.path.exists(self.projectfolder):
             logger.error("[ \u2717 ] Exists same name of project.")
@@ -342,11 +338,11 @@ class Project(StructProject):
         self.module = Module(self.name_project, self.author, self.domain)
 
         self.context = {
-            "SECRETKEY": self.random(),
+            "SECRETKEY": StructProject.random(),
             "NAME": self.name,
             "DOMAIN": self.domain,
             "SALT": uuid.uuid4().hex,
-            "NAMEPROJECT": self.name_project,
+            "NAMEPROJECT": self.name,
             "AUTHOR": self.author,
             "YEAR": datetime.now().year,
             "MODULES": ["users", "admin", "public"]
@@ -354,7 +350,7 @@ class Project(StructProject):
 
     def _extensions(self):
         """Plugin flask."""
-        templatefile = os.path.join(self.projectfolder, self.name_project,
+        templatefile = os.path.join(self.projectfolder, self.name,
                                     "extensions.py")
 
         self.write(templatefile, os.path.join(self._appfld, "extensions.py"),
@@ -365,7 +361,7 @@ class Project(StructProject):
 
     def _config(self):
         """Config files."""
-        templatefile = os.path.join(self.projectfolder, self.name_project,
+        templatefile = os.path.join(self.projectfolder, self.name,
                                     "config.py")
 
         self.write(templatefile, os.path.join(self._appfld, "config.py"),
@@ -376,7 +372,7 @@ class Project(StructProject):
 
     def _app(self):
         """Generate App file."""
-        dst = os.path.join(self.projectfolder, self.name_project,
+        dst = os.path.join(self.projectfolder, self.name,
                            "__init__.py")
 
         self.write(dst, os.path.join(self._appfld, "__init__.py"),
