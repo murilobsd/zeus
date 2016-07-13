@@ -102,11 +102,13 @@ class StructProject:
         except Exception:
             logger.error("[ \u2717 ] Error coping project folder.")
 
-    def random(self, size=32):
+    @staticmethod
+    def random(size=32):
         """random values."""
         return codecs.encode(os.urandom(size), "hex").decode("utf-8")
 
-    def rename_folder(self, src, dst):
+    @staticmethod
+    def rename_folder(src, dst):
         """Rename folder."""
         try:
             os.rename(src, dst)
@@ -334,7 +336,7 @@ class Project(StructProject):
         self.module = Module(self.name_project, self.author, self.domain)
 
         self.context = {
-            "SECRETKEY": self.random(),
+            "SECRETKEY": StructProject.random(),
             "NAME": self.name,
             "DOMAIN": self.domain,
             "SALT": uuid.uuid4().hex,
