@@ -1,20 +1,25 @@
 <ul class="nav navbar-nav navbar-right">
-  {%- if current_user.is_authenticated -%}
-  <li><a href="{{ url_for('users.profile') }}">Oi {{ current_user.fullname }} (Perfíl)</a></li>
-  {%- endif %}
-
-  {% if current_user.has_role('admin') -%}
-  <li><a href="{{ url_for('admin.admin_page') }}">Administração</a></li>
-  {% endif -%}
-
     {%- if current_user.is_authenticated -%}
-      <li><a href="{{ url_for('security.logout') }}">Sair</a></li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+            role="button" aria-haspopup="true" aria-expanded="false">
+            Oi {{ current_user.email }} <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ url_for('users.profile') }}">Perfil</a></li>
+            {% if current_user.has_role('admin') -%}
+            <li role="separator" class="divider"></li>
+            <li><a href="{{ url_for('admin.admin_page') }}">Administração</a></li>
+            {% endif -%}
+            <li role="separator" class="divider"></li>
+            <li><a href="{{ url_for('security.logout') }}">Sair</a></li>
+        </ul>
+    </li>
     {%- else -%}
-      {% if security.registerable %}
-          <li><a href="{{ url_for('security.register') }}">Registrar</a></li>
-      {% endif %}
-      <li>
-          <a href="{{ url_for('security.login') }}">Login</a>
-      </li>
+        {% if security.registerable %}
+        <li><a href="{{ url_for('security.register') }}">Registrar</a></li>
+        {% endif %}
+        <li>
+        <a href="{{ url_for('security.login') }}">Login</a>
+        </li>
     {%- endif -%}
 </ul>
