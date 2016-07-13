@@ -168,11 +168,11 @@ class Module(StructProject):
         }
 
         for m_folder in self.std_modules.keys():
-            files = self.std_modules[m_folder]
-            for f in files:
+            modfiles = self.std_modules[m_folder]
+            for mfile in modfiles:
                 templatefile = os.path.join(self.modulesfolder, m_folder,
-                                            f)
-                template = os.path.join(self._appfld, m_folder, f)
+                                            mfile)
+                template = os.path.join(self._appfld, m_folder, mfile)
                 # update context key modname
                 context.update({"MODNAME": m_folder})
                 self.write(templatefile, template, context)
@@ -210,10 +210,12 @@ class Module(StructProject):
             "MODNAME": custom_name
         }
 
-        files = ["__init__.py", "controllers.py", "models.py", "forms.py"]
-        for f in files:
-            templatefile = os.path.join(mod_path, f)
-            self.write(templatefile, f, context, templatefld=self._modulefld)
+        templatesfile = ["__init__.py",
+                         "controllers.py", "models.py", "forms.py"]
+        for template in templatesfile:
+            templatefile = os.path.join(mod_path, template)
+            self.write(templatefile, template, context,
+                       templatefld=self._modulefld)
 
         # update __init__.py
         self.update_app(custom_name)
