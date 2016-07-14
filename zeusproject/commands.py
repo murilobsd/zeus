@@ -74,7 +74,7 @@ class StructProject:
         self.domain = self._adjust_domain(domain)
 
         # path of project
-        self.projectfolder = self.name_project
+        self.projectfolder = os.path.abspath(name_project)
 
     def _clean_name(self, name):
         """Clean name of project."""
@@ -149,7 +149,7 @@ class Module(StructProject):
         """Init function."""
         StructProject.__init__(self, name_project, author, domain)
 
-        # Project exist.
+        # Path of Project exist.
         if not os.path.exists(self.projectfolder):
             logger.error("[ \u2717 ] Not exist name of project.")
             raise Exception("Not exist name of project.")
@@ -335,7 +335,7 @@ class Project(StructProject):
         # Copy all data
         self.copy_struct()
 
-        self.module = Module(self.name_project, self.author, self.domain)
+        self.module = Module(name_project, author, domain)
 
         self.context = {
             "SECRETKEY": StructProject.random(),
