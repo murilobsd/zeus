@@ -13,6 +13,7 @@ import sys
 import logging
 from flask import Flask
 from flask_security import Security, MongoEngineUserDatastore
+from flask_wtf.csrf import CsrfProtect
 
 
 from {{NAMEPROJECT}} import extensions
@@ -28,6 +29,7 @@ APP_DIR = os.path.dirname(os.path.abspath(__file__))
 def create_app():
     """Flask app factory."""
 
+    csrf = CsrfProtect()
     app = Flask(__name__,
                 template_folder=os.path.join(APP_DIR, "..", 'templates'),
                 static_folder=os.path.join(APP_DIR, "..", 'static'))
@@ -47,6 +49,7 @@ def create_app():
     email_errors(app)
     register_extensions(app)
     register_blueprints(app)
+    csrf.init_app(app)
 
     return app
 
