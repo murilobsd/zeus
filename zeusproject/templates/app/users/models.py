@@ -8,6 +8,8 @@
     :copyright: (c) {{YEAR}} by {{AUTHOR}}.
     :license: BSD, see LICENSE for more details.
 """
+import hashlib
+
 from flask import current_app
 
 from flask_security import UserMixin, RoleMixin
@@ -68,10 +70,7 @@ class User(db.Document, UserMixin):
     @property
     def gravatar(self):
         """Get gravatar."""
-        email = self.email.strip()
-        if isinstance(email, unicode):
-            email = email.encode("utf-8")
-        import hashlib
+        email = self.email.strip().encode("utf-8")
         encoded = hashlib.md5(email).hexdigest()
         return "https://secure.gravatar.com/avatar/%s.png" % encoded
 
