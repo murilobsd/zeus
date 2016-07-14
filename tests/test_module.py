@@ -15,7 +15,8 @@ from zeusproject import commands
 class TestModule():
     """Testing Module."""
 
-    project_f = os.path.join(os.getcwd(), "../tests/ex")
+    project_f = os.path.join(os.getcwd(), "tests/ex")
+    print(project_f)
     module = commands.Module(name_project=project_f,
                              author="Testuser",
                              domain="lab804.com.br")
