@@ -7,4 +7,4 @@ flask-bootstrap
 flask-security
 cssmin
 jsmin
-fabric
+Fabric3==1.12.0.post1
