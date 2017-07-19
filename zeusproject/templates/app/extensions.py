@@ -13,9 +13,11 @@ from flask_mail import Mail
 from flask_assets import Environment
 from flask_cache import Cache
 from flask_bootstrap import Bootstrap
+from flask_wtf.csrf import CsrfProtect
 
 mail = Mail()
 db = MongoEngine()
 assets = Environment()
 cache = Cache()
 bootstrap = Bootstrap()
+csrf = CsrfProtect()
