@@ -452,6 +452,8 @@ class Project(StructProject):
         self._fabfile()
         # Uwsgi
         self._uwsgi()
+        # Uwsgi log's dir
+        self._uwsgi_log_dir()
         # Conf files Nginx Supervidor
         self._config_files()
         # Std. Modules
