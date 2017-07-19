@@ -115,6 +115,8 @@ def register_extensions(app):
     # BootStrap
     extensions.bootstrap.init_app(app)
 
+    # CsrfProtect
+    extensions.csrf.init_app(app)
 
 def register_blueprints(app):
     """Register all blueprints.

@@ -425,6 +425,13 @@ class Project(StructProject):
             self.write(templatefile, os.path.join("config", conffile),
                        self.context)
 
+    def _uwsgi_log_dir(self):
+        try:
+            os.makedirs('log')
+        except:
+            logger.error("[ \u2717 ] Error creating uwsgi log folder.")
+            raise CreateFolderException("Error creating uwsgi log folder.")
+
     def generate(self):
         """Generate Project."""
         logger.debug("Starting generating project...")
@@ -445,6 +452,8 @@ class Project(StructProject):
         self._fabfile()
         # Uwsgi
         self._uwsgi()
+        # Uwsgi log's dir
+        self._uwsgi_log_dir()
         # Conf files Nginx Supervidor
         self._config_files()
         # Std. Modules
