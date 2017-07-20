@@ -417,8 +417,12 @@ class Project(StructProject):
     def _uwsgi_log_folder(self):
         uwsgi_log_folder = os.path.join(self.projectfolder, 'log')
         
+        # if folder exists, do nothing
+        if os.path.exists(uwsgi_log_folder):
+            return
+        
         try:
-            os.makedirs(uwsgi_log_folder)
+            os.mkdir(uwsgi_log_folder)
         except:
             logger.error("[ \u2717 ] Error creating uwsgi log folder.")
             raise CreateFolderException("Error creating uwsgi log folder.")
