@@ -56,8 +56,8 @@
                   {{google.uanalytics(config['GOOGLE_ANALYTICS_ID'])}}
               {% endif %}
           {%endif%}
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-          {% assets filters="jsmin", output="gen/app.js", "js/bootstrap.js", "js/app.js" %}
+          <!--script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script-->
+          {% assets filters="jsmin", output="gen/app.js", "js/jquery.js", "js/bootstrap.js", "js/app.js" %}
                 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
           {% endassets %}
       {% endblock %}
