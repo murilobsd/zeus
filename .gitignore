@@ -11,3 +11,5 @@ build/
 dist/
 zeus_lab804.egg-info/
 .tox
+
+tests/
