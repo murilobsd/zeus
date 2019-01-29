@@ -414,6 +414,19 @@ class Project(StructProject):
 
         self.write(templatefile, "uwsgi.ini", self.context)
 
+    def _uwsgi_log_folder(self):
+        uwsgi_log_folder = os.path.join(self.projectfolder, 'log')
+        
+        # if folder exists, do nothing
+        if os.path.exists(uwsgi_log_folder):
+            return
+        
+        try:
+            os.mkdir(uwsgi_log_folder)
+        except:
+            logger.error("[ \u2717 ] Error creating uwsgi log folder.")
+            raise CreateFolderException("Error creating uwsgi log folder.")
+
     def _config_files(self):
         """Nginx Supervisor conf files."""
         files = ["project_nginx.conf", "project_supervisor.conf"]
@@ -445,6 +458,8 @@ class Project(StructProject):
         self._fabfile()
         # Uwsgi
         self._uwsgi()
+        # Uwsgi
+        self._uwsgi_log_folder()
         # Conf files Nginx Supervidor
         self._config_files()
         # Std. Modules
