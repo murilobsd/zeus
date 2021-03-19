@@ -23,7 +23,7 @@ setup(
     install_requires=[
         "colorama==0.3.7",
         "colorlog==2.7.0",
-        "Jinja2==2.8",
+        "Jinja2==2.11.3",
         "MarkupSafe==0.23",
         "pyfiglet==0.7.5",
         "termcolor==1.1.0",
